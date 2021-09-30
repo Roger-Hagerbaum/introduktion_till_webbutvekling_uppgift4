@@ -1,31 +1,37 @@
+
+//Completed task
 let completedCount = 0;
+
 // array and index
 const toDoArray = [];
 let index = 0;
-// Html element
+
+// Html elements
 const button = document.querySelector("button");
 const input = document.querySelector("input");
 const toDoList = document.querySelector("#toDoList");
 const completedTasks = document.querySelector("p");
 const inputCheck = document.querySelector("h2")
 
+// Add eventlisener and app functions
 button.addEventListener("click", function() {
 // Get the value and create list and span tag
 const toDoTask = input.value;
     if(toDoTask.length == 0){
         inputCheck.innerText = "You must write someting";
+        return
     }
-    else{
-        inputCheck.innerText = "";
-    }
-// Create li and span tags
+   
+// Create li and span html tags
 const task = document.createElement("li");
+toDoList.appendChild(task);
 const taskText = document.createElement("span");
+task.appendChild(taskText);
 taskText.innerText = toDoTask;
 const removeTask = document.createElement("span");
 removeTask.innerHTML = "&#x1F5D1;";
 removeTask.setAttribute("class", "removeTask");
-
+task.appendChild(removeTask);
 
 // Check uncheced function and completed counter
 taskText.addEventListener("click", function(){
@@ -44,28 +50,23 @@ taskText.addEventListener("click", function(){
 
 });
 
+// remove task function
 removeTask.addEventListener("click", function(){
+    task.remove();
+    toDoArray.splice(toDoObj.index, 1);
     
 });
 // create a object with the li and span tag
 let toDoObj = {
-    "li": task,
-    "span": taskText,
-    "remove": removeTask,
-    "checked": false,
+    "toDoText":toDoTask,
+   "checked": false,
     "index": index
 };
-//push the objekt into the array
+//push the objekt into the array and incress the index
 toDoArray.push(toDoObj);
-console.log(toDoArray);
-
-// Add the list and text to the html page
-toDoList.appendChild(toDoArray[index].li);
-task.appendChild(toDoArray[index].span);
-task.appendChild(toDoArray[index].remove);
 index ++;
 
-console.log(completedCount);
+// reset the input field
 input.value = "";
 })
 
