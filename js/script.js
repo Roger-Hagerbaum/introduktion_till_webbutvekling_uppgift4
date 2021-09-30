@@ -7,10 +7,17 @@ const button = document.querySelector("button");
 const input = document.querySelector("input");
 const toDoList = document.querySelector("#toDoList");
 const completedTasks = document.querySelector("p");
+const inputCheck = document.querySelector("h2")
 
 button.addEventListener("click", function() {
 // Get the value and create list and span tag
 const toDoTask = input.value;
+    if(toDoTask.length == 0){
+        inputCheck.innerText = "You must write someting";
+    }
+    else{
+        inputCheck.innerText = "";
+    }
 const task = document.createElement("li");
 const taskText = document.createElement("span");
 taskText.innerText = toDoTask;
